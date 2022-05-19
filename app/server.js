@@ -58,21 +58,21 @@ app.post('/get-insegnante', function (req, res) {
   });
 });
 
-/*const button = document.getElementById('myButton');
-button.addEventListener('click', function(e) {
-  console.log('button was clicked');
+/*app.post('/get-select', function (req, res) {
+  let response = {};
 
-  fetch('/clicked', {method: 'POST'})
-    .then(function(response) {
-      if(response.ok) {
-        console.log('Click was recorded');
-        return;
-      }
-      throw new Error('Request failed.');
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+  MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
+    if (err) throw err;
+
+    let db = client.db(databaseName);
+    //let città = req.body.città;
+    //let materia = req.body.materia;
+    //console.log(città);
+    let myquery = { nome: "Folco" };
+
+    const test = db.collection("teachers").distinct("cognome", myquery);
+    console.log(test);
+  });
 });*/
 
 
