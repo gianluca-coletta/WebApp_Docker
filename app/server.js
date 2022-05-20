@@ -52,9 +52,9 @@ MongoClient.connect(mongoUrlLocal, function (err, db) {
         {nome: 'Michele', cognome: 'Verdi', materie: ['Chimica', 'Biologia'], città: 'Bari', telefono: '3334568975'},
         {nome: 'Gianni', cognome: 'Bianchi', materie: ['Fisica', 'Matematica', 'Inglese', 'Informatica'], città: 'Terni', telefono: '3405695872'},
         {nome: 'Benedetta', cognome: 'Mancinelli', materie: ['Economia', 'Matematica'], città: 'Terni', telefono: '3506891235'},
-        {nome: 'Paola', cognome: 'Verdi', materie: 'Fisica', città: 'Terni', telefono: '3405623215'},
+        {nome: 'Paola', cognome: 'Verdi', materie: ['Fisica'], città: 'Terni', telefono: '3405623215'},
         {nome: 'Francesco', cognome: 'Pirelli', materie: ['Fisica', 'Informatica'], città: 'Bari', telefono: '3403692581'},
-        {nome: 'Gianfranco', cognome: 'Pirillo', materie: 'Inglese', città: 'Terni', telefono: '3506981237'}
+        {nome: 'Gianfranco', cognome: 'Pirillo', materie: ['Inglese'], città: 'Terni', telefono: '3506981237'}
       ];
       dbo.collection("teachers").insertMany(myobj, function (err, res) {
         if (err) throw err;
@@ -72,7 +72,6 @@ app.post('/get-insegnante', function (req, res) {
     let db = client.db(databaseName);
     let città = req.body.città;
     let materia = req.body.materia;
-    //console.log(città);
     let myquery = {$and: [{città: città}, {materie: materia}]};
 
     db.collection("teachers").find(myquery).toArray(function(err, result)  {
