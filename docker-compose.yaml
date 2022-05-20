@@ -1,9 +1,16 @@
 version: '3'
 services:
-  tesina:
-    image: tesina:1.0 # ${docker-registry}/my-app:1.0
+
+  server:
+    build: .
+    container_name: tesina
     ports:
-      - 3000:3000
+    - 3000:3000
+    command: node server.js
+  #tesina:
+  #  image: tesina:1.0 
+  #  ports:
+  #    - 3000:3000
   mongodb:
     image: mongo
     ports:
@@ -11,8 +18,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
-    #volumes:
-    #  - mongo-data:/data/db
+
   mongo-express:
     image: mongo-express:0.54.0
     restart: always 
