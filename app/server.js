@@ -48,7 +48,13 @@ MongoClient.connect(mongoUrlLocal, function (err, db) {
         {nome: 'Leonardo', cognome: 'Lorenzi', materie: ['Chimica'], città: 'Perugia', telefono: '3324567891'},
         {nome: 'Riccardo', cognome: 'Tusino', materie: ['Latino', 'Inglese'], città: 'Bari', telefono: '3329781204'},
         {nome: 'Pietro', cognome: 'Farsi ', materie: ['Matematica', 'Fisica','Inglese', 'Latino'], città: 'Milano', telefono: '3339012343'},
-        {nome: 'Gabriele', cognome: 'Marroni', materie: ['Economia', 'Informatica'], città: 'Milano', telefono: '3215647890'},
+        {nome: 'Paolo', cognome: 'Rossi', materie: ['Matematica', 'Informatica'], città: 'Milano', telefono: '3315622289'},
+        {nome: 'Michele', cognome: 'Verdi', materie: ['Chimica', 'Biologia'], città: 'Bari', telefono: '3334568975'},
+        {nome: 'Gianni', cognome: 'Bianchi', materie: ['Fisica', 'Matematica', 'Inglese', 'Informatica'], città: 'Terni', telefono: '3405695872'},
+        {nome: 'Benedetta', cognome: 'Mancinelli', materie: ['Economia', 'Matematica'], città: 'Terni', telefono: '3506891235'},
+        {nome: 'Paola', cognome: 'Verdi', materie: 'Fisica', città: 'Terni', telefono: '3405623215'},
+        {nome: 'Francesco', cognome: 'Pirelli', materie: ['Fisica', 'Informatica'], città: 'Bari', telefono: '3403692581'},
+        {nome: 'Gianfranco', cognome: 'Pirillo', materie: 'Inglese', città: 'Terni', telefono: '3506981237'}
       ];
       dbo.collection("teachers").insertMany(myobj, function (err, res) {
         if (err) throw err;
