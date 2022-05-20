@@ -8,10 +8,9 @@
 
     async function cercaInsegnante() {
 
-      const cont = document.getElementById('container');
-      var select_città = document.getElementById('regioni');
+      var select_città = document.getElementById('select-regioni');
       var città = select_città.options[select_città.selectedIndex].textContent;
-      var select_materia = document.getElementById('materie');
+      var select_materia = document.getElementById('select-materie');
       var materia = select_materia.options[select_materia.selectedIndex].textContent;
       //console.log(città, materia);
       const payload = {
@@ -32,32 +31,32 @@
       dataHtml = "";
 
       for (let insegnante of jsonResponse) {
-        dataHtml += "<tr><td>" + insegnante.nome + "</td><td>" + insegnante.cognome + "</td><td>" + insegnante.materie + "</td><td>" + insegnante.città + "</td><td>"+ insegnante.telefono + "</td></tr>";
+        dataHtml += "<tr><td>" + insegnante.nome + "</td><td>" + insegnante.cognome + "</td><td>" + insegnante.materie + "</td><td>" + insegnante.città + "</td><td>" + insegnante.telefono + "</td></tr>";
       }
       body.innerHTML = dataHtml;
 
     }
-/////////////////////////////////////////////////////////////////////////////////////
-    async function avvio(){
+    /////////////////////////////////////////////////////////////////////////////////////
+    async function avvio() {
 
       const select_regioni = document.getElementById('select-regioni');
       const select_materie = document.getElementById('select-materie');
 
       const payload = {
-            città: "città",
-            materia: "materia"
-        };
+        città: "città",
+        materia: "materia"
+      };
       const response = await fetch('http://localhost:3000/get-select', {
-            method: "POST",
-           
-        });
+        method: "POST",
+
+      });
 
       const jsonResponse = await response.json();
       console.log(jsonResponse);
       var subjects = [];
       var cities = [];
-      for(let row of jsonResponse){
-        for(let i of row.materie){
+      for (let row of jsonResponse) {
+        for (let i of row.materie) {
           subjects.push(i);
         }
         cities.push(row.città);
@@ -68,11 +67,11 @@
       var dataHtml = "<option>---</option>";
       var materieHtml = "<option>---</option>";
       for (let city of cities) {
-        dataHtml += "<option>"+city+"</option>" ;
+        dataHtml += "<option>" + city + "</option>";
       }
       select_regioni.innerHTML = dataHtml;
       for (let subject of subjects) {
-        materieHtml += "<option>"+subject+"</option>" ;
+        materieHtml += "<option>" + subject + "</option>";
       }
       select_materie.innerHTML = materieHtml;
     }
@@ -81,23 +80,23 @@
 
   <div class="regioni">
     <p>Seleziona città:</p>
-      <select id = "select-regioni">
+    <select id="select-regioni">
 
-      </select>
-    </div>
+    </select>
+  </div>
   <div class="materie">
     <p>Seleziona materia:</p>
-      <select id = "select-materie">
-  
-      </select>
-    </div>
+    <select id="select-materie">
+
+    </select>
+  </div>
   <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-  
-    <br>
-    <button class='button' onclick="cercaInsegnante()">Cerca Insegnante</button>
+
+  <br>
+  <button class='button' onclick="cercaInsegnante()">Cerca Insegnante</button>
   </div>
   <br>
-  <hr/>
+  <hr />
   <br>
   <table class="tabella" id="tabella">
     <thead>
@@ -124,6 +123,7 @@
 
   td,
   th {
+    text-align:center;
     border: 1px solid #CCCCCC;
     padding: 8px;
   }
@@ -132,7 +132,6 @@
     font-weight: bold;
     text-transform: uppercase;
   }
-
 </style>
 
 </html>

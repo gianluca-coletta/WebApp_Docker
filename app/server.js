@@ -24,6 +24,40 @@ let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 let databaseName = "teachers";
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
+MongoClient.connect(mongoUrlLocal, function (err, db) {
+  if (err) throw err;
+  console.log("Database created!");
+  db.close();
+});
+
+MongoClient.connect(mongoUrlLocal, function (err, db) {
+  if (err) throw err;
+  var dbo = db.db(databaseName);
+
+
+  dbo.listCollections().toArray(function (err, collections) {
+    if (collections.length === 0) {
+      dbo.createCollection("teachers", function (err, res) {
+        if (err) throw err;
+        console.log("Collection created");
+        db.close();
+      });
+      var myobj = [
+        {nome: 'Folco', cognome: 'Giorgetti', materie: ['Matematica', 'Fisica','Inglese'], città: 'Perugia', telefono: '3569638798'},
+        {nome: 'Gianluca', cognome: 'Coletta', materie: ['Matematica', 'Fisica'], città: 'Perugia', telefono: '3403326423'},
+        {nome: 'Leonardo', cognome: 'Lorenzi', materie: ['Chimica'], città: 'Perugia', telefono: '3324567891'},
+        {nome: 'Riccardo', cognome: 'Tusino', materie: ['Latino', 'Inglese'], città: 'Bari', telefono: '3329781204'},
+        {nome: 'Pietro', cognome: 'Farsi ', materie: ['Matematica', 'Fisica','Inglese', 'Latino'], città: 'Milano', telefono: '3339012343'},
+        {nome: 'Gabriele', cognome: 'Marroni', materie: ['Economia', 'Informatica'], città: 'Milano', telefono: '3215647890'},
+      ];
+      dbo.collection("teachers").insertMany(myobj, function (err, res) {
+        if (err) throw err;
+        console.log("Number of documents inserted: " + res.insertedCount);
+      });
+    }
+  });
+});
+
 app.post('/get-insegnante', function (req, res) {
   let response = {};
 
