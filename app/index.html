@@ -34,7 +34,7 @@
       dataHtml = "";
 
       for (let insegnante of jsonResponse) {
-        dataHtml += "<tr><td>" + insegnante.nome + "</td><td>" + insegnante.cognome + "</td><td>" + insegnante.materie + "</td><td>" + insegnante.città + "</td></tr>";
+        dataHtml += "<tr><td>" + insegnante.nome + "</td><td>" + insegnante.cognome + "</td><td>" + insegnante.materie + "</td><td>" + insegnante.città + "</td><td>"+ insegnante.telefono + "</td></tr>";
       }
       body.innerHTML = dataHtml;
 
@@ -259,6 +259,7 @@
         <th>Cognome</th>
         <th>Materie</th>
         <th>Città</th>
+        <th>Numero telefonico</th>
       </tr>
     </thead>
 
