@@ -52,7 +52,6 @@ MongoClient.connect(mongoUrlLocal, function (err, db) {
       ];
       dbo.collection("teachers").insertMany(myobj, function (err, res) {
         if (err) throw err;
-        console.log("Number of documents inserted: " + res.insertedCount);
       });
     }
   });
@@ -91,12 +90,10 @@ app.post('/get-select', function (req, res) {
     let db = client.db(databaseName);
     let città = req.body.città;
     let materia = req.body.materia;
-    //console.log(città);
     
     db.collection("teachers").find({}, { projection :{città:1,materie:1,_id:0}}).toArray(function(err, result)  {
       if (err) throw err;
       response = result;
-      console.log(response);
       client.close();
 
       // Send response
