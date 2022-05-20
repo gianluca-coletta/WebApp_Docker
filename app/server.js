@@ -21,16 +21,17 @@ app.listen(3000, function () {
 });
 
 let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
+let mongoUrlDocker = "mongodb://admin:password@mongodb";
 let databaseName = "teachers";
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
-MongoClient.connect(mongoUrlLocal, function (err, db) {
+MongoClient.connect(mongoUrlDocker, function (err, db) {
   if (err) throw err;
   console.log("Database created!");
   db.close();
 });
 
-MongoClient.connect(mongoUrlLocal, function (err, db) {
+MongoClient.connect(mongoUrlDocker, function (err, db) {
   if (err) throw err;
   var dbo = db.db(databaseName);
 
@@ -66,7 +67,7 @@ MongoClient.connect(mongoUrlLocal, function (err, db) {
 app.post('/get-insegnante', function (req, res) {
   let response = {};
 
-  MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
+  MongoClient.connect(mongoUrlDocker, mongoClientOptions, function (err, client) {
     if (err) throw err;
 
     let db = client.db(databaseName);
@@ -88,7 +89,7 @@ app.post('/get-insegnante', function (req, res) {
 app.post('/get-select', function (req, res) {
   let response = {};
 
-  MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
+  MongoClient.connect(mongoUrlDocker, mongoClientOptions, function (err, client) {
     if (err) throw err;
 
     let db = client.db(databaseName);
