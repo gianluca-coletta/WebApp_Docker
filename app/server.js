@@ -78,7 +78,6 @@ app.post('/get-insegnante', function (req, res) {
     db.collection("teachers").find(myquery).toArray(function(err, result)  {
       if (err) throw err;
       response = result;
-      console.log(response);
       client.close();
 
       // Send response
