@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+// Rendering index.html
+
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -30,6 +32,8 @@ MongoClient.connect(mongoUrlDocker, function (err, db) {
   console.log("Database created!");
   db.close();
 });
+
+// Database
 
 MongoClient.connect(mongoUrlDocker, function (err, db) {
   if (err) throw err;
@@ -64,6 +68,8 @@ MongoClient.connect(mongoUrlDocker, function (err, db) {
   });
 });
 
+// Search request teacher
+
 app.post('/get-insegnante', function (req, res) {
   let response = {};
 
@@ -85,6 +91,8 @@ app.post('/get-insegnante', function (req, res) {
     });
   });
 });
+
+// Select all subject and city from DB to fill in a list
 
 app.post('/get-select', function (req, res) {
   let response = {};
